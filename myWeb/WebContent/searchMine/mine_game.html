@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table border="2">
+		<tr>
+			<td>MINE_FIELD</td>
+		</tr>
+		<td>
+			<div id="tDiv" align="center"></div>
+		</td>
+		<tr>
+
+		</tr>
+	</table>
+
+	<table border="2">
+		<tr>
+			<td align="center" colspan="2">난이도 설정</td>
+		</tr>
+		<tr>
+			<td>행 개수</td>
+			<td><input type="number" class="col" id="col" name="col" min="5"></td>
+		</tr>
+		<tr>
+			<td>열 개수</td>
+			<td><input type="number" class="row" id="row" name="row" min="5"></td>
+		</tr>
+	</table>
+	<button onclick="makeTB(row.value ,col.value)">게임 시작!</button>
+	
+	
+	<script>
+	var dataList = new Array();
+	var mineNum = 0;
+	var btnNum = 0;
+	
+	var tbRow = 0;
+	var tbCol = 0;
+	
+	function checking(btnClss, id) {
+		var btnNd = document.querySelector('#c'+id);
+		if(btnClss===2) {
+			btnNd.innerHTML = 2;
+		} else {
+			btnNd.innerHTML = 1;
+		}
+	}
+	
+	function makeBtn(num) {
+		var check = parseInt((Math.random()*2)+1);
+		if(mineNum > ((tbRow*tbCol)/4)) {
+			check = 1;
+		}
+		if(check===2) {
+			mineNum++;
+		}
+		
+		var str = '<button id="c' + num +  '" class="' + check + '" onclick="checking(' + check + ', ' + num + ')">0</button';
+		
+		return str;
+	}
+	
+	
+	function instNode(row, col) {
+		var nRow = row;
+		var nCol = col;
+		for(var g = 1; g <= nRow; g++) {
+			dataList[g-1] = new Array(nCol); 
+		}// Array 크기 정하는 메서드
+		for (var i = 1; i <= nRow; i++) {
+			for(var j = 1; j <= nCol; j++) {
+				dataList[(i-1)][(j-1)] = document.querySelector('#c' + (j + ((i-1) * nCol)));
+				//var dataSet = dataList[(i-1)][(j-1)];
+				//alert(dataSet.id);
+			}
+		}
+	}
+	
+	function makeTB(row, col) {
+		tbRow = row;
+		tbCol = col;
+		mineNum = 0;
+		
+		var nRow = row;
+		var nCol = col;
+
+		var tDiv = document.querySelector("#tDiv");
+		var str = '<table border="1">';
+		for(var i = 1; i<=nRow;i++) {
+			str += '<tr>';
+			for(var j = 1; j<=nCol; j++) {
+				btnNum++;
+				str += '<td>' + makeBtn(btnNum) + '</td>';
+			}
+			str += '</tr>';
+		}
+
+		str += '</table>';
+		tDiv.innerHTML = str;
+		instNode(nRow, nCol);
+	}
+	
+	<!-- 1. 테이블 생성 , 2. 테이블 node들의 Array화, 3. safeBtn와 mine 생성 분기  4. safeFld, mineFld, safeBtn,-->
+
+		function checkMine() {
+
+		}
+	</script>
+</body>
+</html>
