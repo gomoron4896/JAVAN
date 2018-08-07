@@ -15,19 +15,20 @@ public class ViewServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String uri = req.getRequestURI();
 		String rPath = req.getContextPath();
+		
 		uri = uri.replace(rPath, "");
-		uri = "/WEB-INF/" + uri + ".jsp";
+		uri = "/WEB-INF" + uri + ".jsp";
+		
 		System.out.println(uri);
 		
-		RequestDispatcher rd = req.getRequestDispatcher(uri);
-		rd.forward(req, res);
+//		RequestDispatcher rd = req.getRequestDispatcher(uri);
+//		rd.forward(req, res);
 		
 //		res.setContentType("text/html;charset=UTF-8");
 //		res.setCharacterEncoding("UTF-8");
 //		PrintWriter out = res.getWriter();
 //		out.println("DID U CALL ME?<br>");
 //		out.println("I'M TEXT");
-		
 		
 	}
 

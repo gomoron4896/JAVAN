@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 				return;
 			}
 		}
-
+		
 		rMap.put("msg", "FAILED");
 		rMap.put("url", "views/user/login");
 		
