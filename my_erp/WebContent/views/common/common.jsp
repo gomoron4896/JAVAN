@@ -1,8 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.ict.erp.vo.Menu"%>
 <%@page import="com.ict.erp.utils.MenuUtils"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
    
 <%
 
@@ -25,7 +24,15 @@ List<Menu> mList = MenuUtils.getMenuList();
 <script src="<%=rPath%>bs3/js/jquery-3.3.1.js"></script>
 <script src="<%=rPath%>bs3/js/bootstrap.js"></script>
 <script src="<%=rPath%>bs3/js/common.js"></script>
+<style>
+.login-form{
+	width:300px;
+	margin:0 auto;
+}
+
+</style>
 </head>
+<body>
 <div class="container">
       <nav class="navbar navbar-default">
         <div class="container-fluid">

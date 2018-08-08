@@ -21,8 +21,8 @@ public class ViewServlet extends HttpServlet {
 		
 		System.out.println(uri);
 		
-//		RequestDispatcher rd = req.getRequestDispatcher(uri);
-//		rd.forward(req, res);
+		RequestDispatcher rd = req.getRequestDispatcher(uri);
+		rd.forward(req, res);
 		
 //		res.setContentType("text/html;charset=UTF-8");
 //		res.setCharacterEncoding("UTF-8");

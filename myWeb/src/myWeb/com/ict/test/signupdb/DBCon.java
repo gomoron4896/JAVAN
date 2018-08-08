@@ -9,8 +9,8 @@ import java.sql.SQLException;
 public class DBCon {
 	
 	private static String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static String id = "ictu";
-	private static String pwd = "root";
+	private static String id = "system";
+	private static String pwd = "12345678";
 	private static String driver = "oracle.jdbc.driver.OracleDriver";
 
 	public static Connection con;

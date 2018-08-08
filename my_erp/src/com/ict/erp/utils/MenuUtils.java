@@ -12,11 +12,11 @@ public class MenuUtils {
 	public static List<Menu> getMenuList(){
 		if(menuList==null) {
 			menuList = new ArrayList<Menu>();
-			Menu m = new Menu("views/index","home","Home");
+			Menu m = new Menu("views/index.jsp","home","Home");
 			menuList.add(m);
-			m = new Menu("views/user/login","login","Login");
+			m = new Menu("views/user/login.jsp","login","Login");
 			menuList.add(m);
-			m = new Menu("views/user/signup","signup","SingUp");
+			m = new Menu("views/user/signup.jsp","signup","SingUp");
 			menuList.add(m);
 		}
 		return menuList;

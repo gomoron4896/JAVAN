@@ -1,26 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/common.jsp" %>
-<style>
-body{
-    background-color: #525252;
-}
-.centered-form{
-	margin-top: 60px;
-}
 
-.centered-form .panel{
-	background: rgba(255, 255, 255, 0.8);
-	box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
-}
-</style>
-<body>
+<%@ include file="/views/common/common.jsp" %>
+
 <div class="container">
         <div class="row centered-form">
         <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4">
         	<div class="panel panel-default">
         		<div class="panel-heading">
-			    		<h3 class="panel-title">Please sign up for Bootsnipp <small>It's free!</small></h3>
+			    		<h3 class="panel-title">Please sign up for Bootsnipp</h3>
 			 			</div>
 			 			<div class="panel-body">
 			    		<form role="form">
