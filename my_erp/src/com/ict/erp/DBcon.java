@@ -5,9 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.servlet.RequestDispatcher;
 
 public class DBcon {
 	private static String url = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -16,16 +15,22 @@ public class DBcon {
 	private static String driver = "oracle.jdbc.driver.OracleDriver";
 	private static Connection con;
 
+	// Connection 관련 메서드
 	public static void openCon() {
-		if (DBcon.con == null) {
-			try {
-				Class.forName(driver);
-				DBcon.con = DriverManager.getConnection(url, id, pwd);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			} catch (SQLException e) {
-				e.printStackTrace();
+		try {
+			if (DBcon.con == null || DBcon.con.isClosed()) {
+				try {
+					Class.forName(driver);
+					DBcon.con = DriverManager.getConnection(url, id, pwd);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
@@ -50,12 +55,23 @@ public class DBcon {
 
 	}
 
+	// SQL 메서드
 	public static HashMap<String, String> getInfo(String id, String pwd) {
 		if (DBcon.con == null) {
 			openCon();
 		}
+		try {
+			if (DBcon.con.isClosed()) {
+				DBcon.con = null;
+				DBcon.openCon();
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		HashMap<String, String> memInfo = new HashMap<String, String>();
-//		String sql = "select * from member_info where miId='" + id +"'AND miPwd='" + pwd + "'";
+		// String sql = "select * from member_info where miId='" + id +"'AND miPwd='" +
+		// pwd + "'";
 		String sql = "select * from member_info where miId=? AND miPwd=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -63,10 +79,10 @@ public class DBcon {
 			ps.setString(2, pwd);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				memInfo.put("name", rs.getString("miName"));
-				memInfo.put("email", rs.getString("miEmail"));
-				memInfo.put("id", rs.getString("miId"));
-				memInfo.put("dino", rs.getString("diNo"));
+				memInfo.put("miName", rs.getString("miName"));
+				memInfo.put("miEail", rs.getString("miEmail"));
+				memInfo.put("miId", rs.getString("miId"));
+				memInfo.put("diNo", rs.getString("diNo"));
 				memInfo.put("miNo", rs.getString("miNo"));
 				memInfo.put("lvl", rs.getString("lvl"));
 			}
@@ -74,24 +90,34 @@ public class DBcon {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
+			DBcon.closeCon();
 		}
 		return memInfo;
 
 	}
-	
+
 	public static int checkInfo(String id) {
 		if (DBcon.con == null) {
 			openCon();
 		}
+		try {
+			if (DBcon.con.isClosed()) {
+				DBcon.con = null;
+				DBcon.openCon();
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		int cnt = 0;
-//		String sql = "select * from member_info where miId='" + id +"'AND miPwd='" + pwd + "'";
+		// String sql = "select * from member_info where miId='" + id +"'AND miPwd='" +
+		// pwd + "'";
 		String sql = "select count(1) from member_info where miId=?";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setString(1, id);
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				cnt = rs.getInt(1);
 			}
 		} catch (SQLException e) {
@@ -107,29 +133,82 @@ public class DBcon {
 		if (DBcon.con == null) {
 			openCon();
 		}
+		try {
+			if (DBcon.con.isClosed()) {
+				DBcon.con = null;
+				DBcon.openCon();
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		int cnt = 0;
-//		String sql = "select * from member_info where miId='" + id +"'AND miPwd='" + pwd + "'";
-		String sql = "select * from member_info where miId=? AND miPwd=?";
+		// String sql = "select * from member_info where miId='" + id +"'AND miPwd='" +
+		// pwd + "'";
+		String sql = "insert into member_info values(seq_mino.nextval,?,?,1,?,?,to_char(sysdate,'YYYYMMDD'),to_char(sysdate,'HH24miss'),?,to_char(sysdate,'YYYYMMDD'),to_char(sysdate,'HH24miss'),?,?,?)";
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
-			ps.setString(1, id);
-			ps.setString(2, pwd);
+			ps.setString(1, infoMap.get("miId"));
+			ps.setString(2, infoMap.get("miPwd"));
+			ps.setString(3, infoMap.get("miEmail"));
+			ps.setString(4, infoMap.get("miEtc"));
+			ps.setString(5, infoMap.get("miNo"));
+			ps.setString(6, infoMap.get("miNo"));
+			ps.setString(7, infoMap.get("lvl"));
+			ps.setString(8, infoMap.get("miName"));
 			cnt = ps.executeUpdate();
+			con.commit();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			
+			DBcon.closeCon();
 		}
 		return cnt;
+	}
+
+	public static ArrayList<HashMap<String, String>> getList() {
+		if (DBcon.con == null) {
+			openCon();
+		}
+		try {
+			if (DBcon.con.isClosed()) {
+				DBcon.con = null;
+				DBcon.openCon();
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ArrayList<HashMap<String, String>> memList = new ArrayList<HashMap<String, String>>();
+		// String sql = "select * from member_info where miId='" + id +"'AND miPwd='" +
+		// pwd + "'";
+		String sql = "select * from member_info";
+		try {
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				HashMap<String, String> hm = new HashMap<String, String>();
+				hm.put("miName", rs.getString("miName"));
+				hm.put("miEail", rs.getString("miEmail"));
+				hm.put("miId", rs.getString("miId"));
+				hm.put("diNo", rs.getString("diNo"));
+				hm.put("miNo", rs.getString("miNo"));
+				hm.put("lvl", rs.getString("lvl"));
+				memList.add(hm);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBcon.closeCon();
+		}
+		return memList;
 
 	}
-	
-//	insert into member_info
-//	values(seq_mino.nextval,'admin','qwe!@#',1,'oxym4896@gmail.com','관리자',to_char(sysdate,'YYYYMMDD'),to_char(sysdate,'HH24miss'),1,
-//	to_char(sysdate,'YYYYMMDD'),to_char(sysdate,'HH24miss'),1,3,'김기섭');
+
 	public static void main(String[] args) {
 		int cnt = DBcon.checkInfo("admin");
 		System.out.println(cnt);
-			
-		}
+
 	}
+}

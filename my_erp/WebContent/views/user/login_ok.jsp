@@ -11,14 +11,14 @@
 	String id = request.getParameter("id");
 	String pwd = request.getParameter("pwd");
 
-	HashMap<String, String> memInfo = DBcon.getInfo(id, pwd);
-
-	if (memInfo != null) {
-		session.setAttribute("memInfo", memInfo);
+	Map<String,String> usr = (Map<String,String>)DBcon.getInfo(id, pwd);
+	System.out.println(usr);
+	if (usr != null) {
+		session.setAttribute("usr", usr);
 		session.setAttribute("login", true);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-		response.sendRedirect("index.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/views/index.jsp");
+		rd.forward(request, response);
 		return;
 	} else {
 		response.sendRedirect("login.jsp");

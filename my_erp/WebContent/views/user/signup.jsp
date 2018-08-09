@@ -10,7 +10,7 @@
 					<h3 class="panel-title">Sign up</h3>
 				</div>
 				<div class="panel-body">
-					<form role="form" action="<%=rPath%>views/user/signup_ok.jsp"
+					<form role="form" action="<%=rPath%>/views/user/signup_ok.jsp"
 						onsubmit ="return check(this)" method="post">
 
 						<!-- 아이디 패스워드 부 -->
