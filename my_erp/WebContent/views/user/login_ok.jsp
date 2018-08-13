@@ -2,7 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.ict.erp.DBcon"%>
+<%@page import="com.ict.erp.common.DBcon"%>
 <%@page import="java.sql.Connection"%>
 <%@include file="/views/common/common.jsp"%>
 
@@ -13,7 +13,7 @@
 
 	Map<String,String> usr = (Map<String,String>)DBcon.getInfo(id, pwd);
 	System.out.println(usr);
-	if (usr != null) {
+	if (!usr.isEmpty()) {
 		session.setAttribute("usr", usr);
 		session.setAttribute("login", true);
 		

@@ -11,7 +11,7 @@ public class MenuUtils {
 
 	public static List<Menu> getMenuList(Object login) {
 		menuList = new ArrayList<Menu>();
-		Menu m = new Menu("/views/user/index.jsp", "home", "Home");
+		Menu m = new Menu("/views/index.jsp", "home", "Home");
 		menuList.add(m);
 
 		if (login != null) {
