@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ict.erp.common.DBcon;
+import com.ict.erp.common.DBCon;
 import com.ict.erp.dao.DepartDAO;
 import com.ict.erp.vo.DepartInfo;
 
@@ -18,7 +18,7 @@ public class DepartDAOImpl implements DepartDAO {
 	}	
 
 	public DepartDAOImpl(Connection con) {
-		this.con = DBcon.getCon();
+		this.con = DBCon.getCon();
 	}
 
 	@Override

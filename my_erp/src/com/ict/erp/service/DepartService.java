@@ -7,7 +7,7 @@ import java.util.List;
 import com.ict.erp.vo.DepartInfo;
 
 public interface DepartService {
-	public List<DepartInfo> getDepartList(Connection thisCon) throws SQLException;
+	public List<DepartInfo> getDepartList() throws SQLException;
 	public DepartInfo getDepart();
 
 }

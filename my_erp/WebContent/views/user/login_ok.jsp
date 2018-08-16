@@ -2,7 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.ict.erp.common.DBcon"%>
+<%@page import="com.ict.erp.common.DBCon"%>
 <%@page import="java.sql.Connection"%>
 <%@include file="/views/common/common.jsp"%>
 
@@ -11,7 +11,7 @@
 	String id = request.getParameter("id");
 	String pwd = request.getParameter("pwd");
 
-	Map<String,String> usr = (Map<String,String>)DBcon.getInfo(id, pwd);
+	Map<String,String> usr = (Map<String,String>)DBCon.getInfo(id, pwd);
 	System.out.println(usr);
 	if (!usr.isEmpty()) {
 		session.setAttribute("usr", usr);

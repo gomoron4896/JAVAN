@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-public class DBcon {
+public class DBCon {
 	private static String url;
 	private static String id;
 	private static String pwd;
@@ -23,7 +23,7 @@ public class DBcon {
 
 // propertie 가져오기
 	public static void load(String path) {
-		InputStream is = DBcon.class.getResourceAsStream(path);
+		InputStream is = DBCon.class.getResourceAsStream(path);
 		Properties prop = new Properties();
 		try {
 			prop.load(is);
@@ -42,10 +42,11 @@ public class DBcon {
 	public static void openCon() {
 		load("/config/db.properties");
 		try {
-			if (DBcon.con == null || DBcon.con.isClosed()) {
+			if (DBCon.con == null || DBCon.con.isClosed()) {
 				try {
 					Class.forName(driver);
-					DBcon.con = DriverManager.getConnection(url, id, pwd);
+					DBCon.con = DriverManager.getConnection(url, id, pwd);
+					con.setAutoCommit(false);
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();
 				} catch (SQLException e) {
@@ -59,17 +60,17 @@ public class DBcon {
 	}
 
 	public static Connection getCon() {
-		if (DBcon.con == null) {
+		if (DBCon.con == null) {
 			openCon();
 		}
-		return DBcon.con;
+		return DBCon.con;
 	}
 
 	public static boolean closeCon() {
-		if (DBcon.con != null) {
+		if (DBCon.con != null) {
 			try {
-				DBcon.con.close();
-				DBcon.con = null;
+				DBCon.con.close();
+				DBCon.con = null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -82,13 +83,13 @@ public class DBcon {
 
 	// SQL 메서드 시작
 	public static HashMap<String, String> getInfo(String id, String pwd) {
-		if (DBcon.con == null) {
+		if (DBCon.con == null) {
 			openCon();
 		}
 		try {
-			if (DBcon.con.isClosed()) {
-				DBcon.con = null;
-				DBcon.openCon();
+			if (DBCon.con.isClosed()) {
+				DBCon.con = null;
+				DBCon.openCon();
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -115,20 +116,20 @@ public class DBcon {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBcon.closeCon();
+			DBCon.closeCon();
 		}
 		return memInfo;
 
 	}
 
 	public static List<HashMap<String, String>> getInfo() {
-		if (DBcon.con == null) {
+		if (DBCon.con == null) {
 			openCon();
 		}
 		try {
-			if (DBcon.con.isClosed()) {
-				DBcon.con = null;
-				DBcon.openCon();
+			if (DBCon.con.isClosed()) {
+				DBCon.con = null;
+				DBCon.openCon();
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -154,20 +155,20 @@ public class DBcon {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBcon.closeCon();
+			DBCon.closeCon();
 		}
 		return memInfo;
 
 	}
 
 	public static int checkInfo(String id) {
-		if (DBcon.con == null) {
+		if (DBCon.con == null) {
 			openCon();
 		}
 		try {
-			if (DBcon.con.isClosed()) {
-				DBcon.con = null;
-				DBcon.openCon();
+			if (DBCon.con.isClosed()) {
+				DBCon.con = null;
+				DBCon.openCon();
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -187,20 +188,20 @@ public class DBcon {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBcon.closeCon();
+			DBCon.closeCon();
 		}
 		return cnt;
 
 	}
 
 	public static int instInfo(HashMap<String, String> infoMap) {
-		if (DBcon.con == null) {
+		if (DBCon.con == null) {
 			openCon();
 		}
 		try {
-			if (DBcon.con.isClosed()) {
-				DBcon.con = null;
-				DBcon.openCon();
+			if (DBCon.con.isClosed()) {
+				DBCon.con = null;
+				DBCon.openCon();
 			}
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -225,13 +226,13 @@ public class DBcon {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			DBcon.closeCon();
+			DBCon.closeCon();
 		}
 		return cnt;
 	}
 
 	public static List<Map<String, String>> getList() throws SQLException {
-		if (DBcon.con == null) {
+		if (DBCon.con == null) {
 			openCon();
 		}
 		String sql = "select mino, miname, miid, miemail,"
@@ -239,7 +240,7 @@ public class DBcon {
 				+ "creusr,(select diname from depart_info di where di.dino=mi.dino) diname "
 				+ "from member_info mi";
 		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
-		PreparedStatement ps = DBcon.con.prepareStatement(sql);
+		PreparedStatement ps = DBCon.con.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 
 		ResultSetMetaData rsmd = rs.getMetaData();
@@ -268,8 +269,8 @@ public class DBcon {
 	// SQL 메서드 끝
 
 	public static void main(String[] args) {
-		DBcon.openCon();
-		System.out.println(DBcon.con != null);
+		DBCon.openCon();
+		System.out.println(DBCon.con != null);
 		try {
 			getList();
 		} catch (SQLException e) {

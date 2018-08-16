@@ -1,6 +1,6 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.util.HashMap"%>
-<%@page import="com.ict.erp.common.DBcon"%>
+<%@page import="com.ict.erp.common.DBCon"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -20,9 +20,9 @@
 		<tbody>
 			<%
 				try {
-					List<Map<String, String>> memberList = DBcon.getList();
-					out.println(memberList);
-					for (Map<String, String> member : memberList) {
+						List<Map<String, String>> memberList = DBCon.getList();
+						out.println(memberList);
+						for (Map<String, String> member : memberList) {
 			%>
 			<tr>
 				<td><%=member.get("MINO")%></td>

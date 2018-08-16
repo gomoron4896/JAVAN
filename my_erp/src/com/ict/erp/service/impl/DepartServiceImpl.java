@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.ict.erp.common.DBcon;
+import com.ict.erp.common.DBCon;
 import com.ict.erp.dao.DepartDAO;
 import com.ict.erp.dao.impl.DepartDAOImpl;
 import com.ict.erp.service.DepartService;
@@ -16,16 +16,16 @@ import com.ict.erp.vo.DepartInfo;
 public class DepartServiceImpl implements DepartService {
 
 	@Override
-	public List<DepartInfo> getDepartList(Connection thisCon) throws SQLException {
+	public List<DepartInfo> getDepartList() throws SQLException {
 		DepartDAO ddao = new DepartDAOImpl();
 		List<DepartInfo> ls = null;
 		try {
-			ls = ddao.selectDepartList(DBcon.getCon());
+			ls = ddao.selectDepartList(DBCon.getCon());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			DBcon.closeCon();
+			DBCon.closeCon();
 		}
 		return ls;
 	}
