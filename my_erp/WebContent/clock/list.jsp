@@ -4,7 +4,7 @@
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/views/common/common.jsp"%>
+<%@include file="/WEB-INF/views/common/common.jsp"%>
 <%
 	Connection con = DBCon.getCon();
 	String sql = "select * from ict_test order by itNo";
@@ -35,7 +35,7 @@
 					}
 					while (rs.next()) {
 			%>
-			<tr onclick="dataDesc(this)">
+			<tr>
 				<td><input type="checkbox" name="chk" value="<%=rs.getString("itNo")%>"></td>
 				<td><%=rs.getString("itNo")%></td>
 				<td><%=rs.getString("itText")%></td>
@@ -76,10 +76,6 @@
 		}
 	}
 	function dataDesc(obj) {
-		var slcts = document.querySelectorAll(obj.type+'>td');
-		for(var i = 0;i<slcts.length;i++) {
-			alert(slcts[i]);
-		}
 	}
 	</script>
 </div>

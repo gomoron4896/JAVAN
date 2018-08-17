@@ -1,7 +1,7 @@
 <%@page import="java.util.Iterator"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/views/common/common.jsp"%>
+<%@include file="/WEB-INF/views/common/common.jsp"%>
 <%
 	Map<String, String[]> reqMap = request.getParameterMap();
 	Iterator<String> it = reqMap.keySet().iterator();

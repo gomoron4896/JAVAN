@@ -3,7 +3,7 @@ package com.ict.erp.utils;
 import javax.servlet.http.HttpServletRequest;
 
 public class ICTUtils {
-	private static final String PRE_FIX = "/WEB-INF/views";
+	private static final String PRE_FIX = "/WEB-INF/views/";
 	private static final String SUF_FIX = ".jsp";
 	private static final String SEP_STR = "/";
 	public static String getCmd(String uri) {

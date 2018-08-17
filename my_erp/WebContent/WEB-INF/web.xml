@@ -7,15 +7,9 @@
 	<welcome-file-list>
 		<welcome-file>/views/index.jsp</welcome-file>
 	</welcome-file-list>
-<!--	<servlet>
-		<servlet-name>TestServlet</servlet-name>
-		<servlet-class>com.ict.erp.controller.TestServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>TestServlet</servlet-name>
-		<url-pattern>/test/*</url-pattern>
-	</servlet-mapping>
--->
+	<!-- <servlet> <servlet-name>TestServlet</servlet-name> <servlet-class>com.ict.erp.controller.TestServlet</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>TestServlet</servlet-name> <url-pattern>/test/*</url-pattern> 
+		</servlet-mapping> -->
 	<servlet>
 		<servlet-name>DepartServlet</servlet-name>
 		<servlet-class>com.ict.erp.controller.DepartServlet</servlet-class>
@@ -23,5 +17,16 @@
 	<servlet-mapping>
 		<servlet-name>DepartServlet</servlet-name>
 		<url-pattern>/depart/*</url-pattern>
+	</servlet-mapping>
+	<!-- <servlet> <servlet-name>ViewServlet</servlet-name> <servlet-class>com.ict.erp.controller.ViewServlet</servlet-class> 
+		</servlet> <servlet-mapping> <servlet-name>ViewServlet</servlet-name> <url-pattern>/views/*</url-pattern> 
+		</servlet-mapping> -->
+	<servlet>
+		<servlet-name>LvlServlet</servlet-name>
+		<servlet-class>com.ict.erp.controller.LvlServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LvlServlet</servlet-name>
+		<url-pattern>/lvl/*</url-pattern>
 	</servlet-mapping>
 </web-app>

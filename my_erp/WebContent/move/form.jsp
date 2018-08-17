@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/views/common/common.jsp" %>
+<%@include file="/WEB-INF/views/common/common.jsp" %>
 <form action="<%=rPath%>/test/">
 취미 : <br>
 <input type="checkbox" name="hobby" value="게임">게임,
