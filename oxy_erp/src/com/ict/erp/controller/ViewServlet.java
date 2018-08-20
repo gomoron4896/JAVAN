@@ -20,20 +20,23 @@ public class ViewServlet extends HttpServlet {
 		uri = uri.replaceFirst(rPath, "");
 		String cmd = ICTUtils.getCmd(uri);
 		String page = null;
-		System.out.println(uri + " & " + cmd);
-		if(cmd==null || cmd.equals("")) {
-			page = ICTUtils.getJSPpage("index");
-			System.out.println(page);
-			RequestDispatcher rd = req.getRequestDispatcher(page);
-			rd.forward(req, res);
+		System.out.println("WE ARE IN [" + this.getClass().getName() + "] [" + uri + "] & [" + cmd + "]\r\n");
+
+		if (cmd == null || cmd.equals("")) {
+			page = ICTUtils.getJSPpage("/views/index");
+		} else if (cmd.equals("levelList")) {
+			page = ICTUtils.getJSPpage("/views/level/levelList");
+		} else if (cmd.equals("error")) {
+			page = ICTUtils.getJSPpage("/views/error");
 		} else {
-			page = ICTUtils.getJSPpage(cmd);
-			RequestDispatcher rd = req.getRequestDispatcher(page);
-			rd.forward(req, res);
+			page = ICTUtils.getJSPpage(uri);
 		}
+		RequestDispatcher rd = req.getRequestDispatcher(page);
+		rd.forward(req, res);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 }

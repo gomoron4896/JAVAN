@@ -9,19 +9,20 @@
 	String title = "클라우드 프로젝트";
 	String uri = request.getRequestURI();
 	List<Menu> menuList = MenuUtils.getMenuList(null);
-	
 %>
 <!doctype html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title><%=title%></title>
+<script src="<%=rPath%>/bs3/js/jquery-3.3.1.js"></script>
+<script src="<%=rPath%>/bs3/js/bootstrap.js"></script>
+<script src="<%=rPath%>/bs3/js/common.js"></script>
 <link rel="stylesheet" href="<%=rPath%>/bs3/css/bootstrap-theme.css">
 <link rel="stylesheet" href="<%=rPath%>/bs3/css/bootstrap.css">
 <link rel="stylesheet" href="<%=rPath%>/bs3/css/common.css">
-<script src="<%=rPath%>/bs3/css/bootstrap.js"></script>
-<script src="<%=rPath%>/bs3/css/common.js"></script>
-<script src="<%=rPath%>/bs3/css/jquery-3.3.1.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 </head>
 <div class="container">
 	<nav class="navbar navbar-default">
