@@ -1,8 +1,10 @@
 package com.ict.erp.controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,6 +35,22 @@ public class LevelServlet extends HttpServlet {
 				req.setAttribute("liList", liList);
 				uri = "/views/level/levelList";
 
+			} else if(cmd.equals("saveLevelList")) {
+				List<LevelInfo> iList = new ArrayList<LevelInfo>();
+				String[] liNames = req.getParameterValues("liName");
+				String[] liLevels = req.getParameterValues("liLevel");
+				String[] liDesces = req.getParameterValues("liDesc");
+				for (int i = 0; i<liNames.length;i++) {
+					int level = Integer.parseInt(liLevels[i]);
+					LevelInfo li = new LevelInfo(0,level,liNames[i],liDesces[i]);
+					iList.add(li);
+				}
+				Map<String,List<LevelInfo>> map = new HashMap<String,List<LevelInfo>>();
+				map.put("iList", iList);
+				map.put("uList", new ArrayList<LevelInfo>());
+				Map<String,Object> rMap = ls.insertNUpdateLilist(map);
+				req.setAttribute("rMap", rMap);
+				uri = "/views/level/levelList";
 			} else {
 				uri = "/views/notFound";
 			}

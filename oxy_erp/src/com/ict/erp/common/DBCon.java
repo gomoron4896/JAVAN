@@ -21,7 +21,7 @@ public class DBCon {
 	private static String driver;
 	private static Connection con;
 
-// propertie 가져오기
+// propertie 媛��졇�삤湲�
 	public static void load(String path) {
 		InputStream is = DBCon.class.getResourceAsStream(path);
 		Properties prop = new Properties();
@@ -38,7 +38,7 @@ public class DBCon {
 		}
 	}
 
-	// Connection 관련 메서드
+	// Connection 愿��젴 硫붿꽌�뱶
 	public static void openCon() {
 		load("/config/db.properties");
 		try {
@@ -81,7 +81,7 @@ public class DBCon {
 
 	}
 
-	// SQL 메서드 시작
+	// SQL 硫붿꽌�뱶 �떆�옉
 	public static HashMap<String, String> getInfo(String id, String pwd) {
 		if (DBCon.con == null) {
 			openCon();
@@ -266,7 +266,25 @@ public class DBCon {
 		return list;
 	}
 
-	// SQL 메서드 끝
+	// SQL 硫붿꽌�뱶 �걹
+	
+	public static void commit() {
+		try {
+			con.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void rollback() {
+		try {
+			con.rollback();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) {
 		DBCon.openCon();
