@@ -5,12 +5,13 @@
 <%
 	List<TestInfo> tiList = (List<TestInfo>) request.getAttribute("tiList");
 %>
-<body>
-	<style>
+<style>
 tr>td {
 	cursor: pointer;
 }
 </style>
+<body>
+
 	<div class="container">
 		<div class="container">
 			<select class="select" id="shType">

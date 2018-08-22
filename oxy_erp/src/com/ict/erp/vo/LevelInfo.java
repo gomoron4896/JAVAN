@@ -13,6 +13,10 @@ public class LevelInfo {
 		this.liName = liName;
 		this.liDesc = liDesc;
 	}
+	
+	public LevelInfo() {
+		super();
+	}
 
 	public int getLiNum() {
 		return liNum;

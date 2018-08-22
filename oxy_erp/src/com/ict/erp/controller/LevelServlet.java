@@ -17,6 +17,7 @@ import com.ict.erp.service.LevelService;
 import com.ict.erp.service.impl.LevelServiceImpl;
 import com.ict.erp.utils.ICTUtils;
 import com.ict.erp.vo.LevelInfo;
+import com.ict.erp.vo.TestInfo;
 
 @WebServlet("/LevelServlet")
 public class LevelServlet extends HttpServlet {
@@ -31,7 +32,24 @@ public class LevelServlet extends HttpServlet {
 			if (cmd == null || cmd.equals("")) {
 				uri = "/views/notFound";
 			} else if (cmd.equals("levelList")) {
-				List<LevelInfo> liList = ls.getLiList(null);
+				LevelInfo li = null;
+				List<LevelInfo> liList = null;
+				String shType = req.getParameter("shType");
+				String shText = req.getParameter("shText");
+				if(shText!=null) {
+					li = new LevelInfo();
+					if(shType.equals("liNum")) {
+						li.setLiNum(Integer.parseInt(shText));
+					} else if(shType.equals("liLevel")) {
+						li.setLiLevel(Integer.parseInt(shText));;
+					} else if(shType.equals("liName")) {
+						li.setLiName(shText);;
+					} else if(shType.equals("liDesc")) {
+						li.setLiDesc(shText);
+					}
+				}
+				System.out.println("나는 검색할 놈" + li);
+				liList = ls.getLiList(li);
 				req.setAttribute("liList", liList);
 				uri = "/views/level/levelList";
 

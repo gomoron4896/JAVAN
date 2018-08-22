@@ -23,7 +23,30 @@ public class LevelDAOImpl implements LevelDAO {
 	public List<LevelInfo> SelectLiList(LevelInfo li) throws SQLException {
 		Connection con = DBCon.getCon();
 		String sql = "select liNum, liLevel, liName, liDesc from level_info";
+		if (li != null) {
+			if (li.getLiNum() != 0) {
+				sql += " where liNum=?";
+			} else if (li.getLiLevel() != 0) {
+				sql += " where liLevel like '%' || ? || '%'";
+			} else if (li.getLiName() != null) {
+				sql += " where liName like '%' || ? || '%'";
+			} else if (li.getLiDesc() != null) {
+				sql += " where liDesc like '%' || ? || '%'";
+			}
+		}
+		System.out.println(sql);
 		PreparedStatement ps = con.prepareStatement(sql);
+		if (li != null) {
+			if (li.getLiNum() != 0) {
+				ps.setInt(1, li.getLiNum());
+			} else if (li.getLiLevel() != 0) {
+				ps.setInt(1, li.getLiLevel());
+			} else if (li.getLiName() != null) {
+				ps.setString(1, li.getLiName());
+			} else if (li.getLiDesc() != null) {
+				ps.setString(1, li.getLiDesc());
+			}
+		}
 		ResultSet rs = ps.executeQuery();
 		List<LevelInfo> liList = new ArrayList<LevelInfo>();
 		while(rs.next()) {

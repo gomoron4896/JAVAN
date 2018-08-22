@@ -9,8 +9,7 @@
 			<table id="levelList" class="table table-bordered table-hover">
 				<thead>
 					<tr>
-						<th><input type="checkbox" name="allchck"
-							onclick="chckAll(this)"></th>
+						<th><input type="checkbox" name="allchck" onclick="chckAll(this)"></th>
 						<th>번호</th>
 						<th>레벨</th>
 						<th>이름</th>
@@ -27,9 +26,9 @@
 							<td>${li.liDesc}</td>
 						</tr>
 					</c:forEach>
-					<c:if test="${liList}=">
+					<c:if test="${empty liList}">
 						<tr>
-							<td colspan="4">NO DATA</td>
+							<td colspan="5">NO DATA</td>
 						</tr>
 					</c:if>
 				</tbody>
@@ -38,6 +37,16 @@
 				<button id="add" onclick="addRow()">레벨추가</button>
 				<button id="add" onclick="saveLevel()">레벨저장</button>
 				<button id="add" onclick="deleteLevel()">레벨삭제</button>
+			</div>
+			<div class="searchbox">
+				<select id="shType">
+					<option value="liNum">번호</option>
+					<option value="liLevel">레벨</option>
+					<option value="liName">이름</option>
+					<option value="liDesc">비고</option>
+				</select>
+				<input type="text" id="shText">
+				<button onclick="searchTest()">검색</button>
 			</div>
 		</div>
 	</div>
@@ -104,6 +113,16 @@
 				param += 'liNum=' + chckObjs[i].value + '&';
 			}
 			location.href = '/level/deleteLevelList?' + param;
+		}
+		
+		function searchTest() {
+			var shType = document.querySelector('#shType').value;
+			var shText = document.querySelector('#shText').value;
+			if(shText.trim()=='') {
+				alert('검색어는 1글자 이상입니다');
+				return;
+			}
+			location.href='<%=rPath%>/level/levelList?shType=' + shType + '&shText=' + shText;
 		}
 	</script>
 </body>
