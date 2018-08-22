@@ -9,5 +9,5 @@ import com.ict.erp.vo.LevelInfo;
 public interface LevelService {
 	public List<LevelInfo> getLiList(LevelInfo li) throws SQLException;
 	public Map<String,Object> insertNUpdateLilist(Map<String,List<LevelInfo>> liList) throws SQLException;
-	public Map<String,Object> deleteLilist(List<LevelInfo> liList) throws SQLException;
+	public Map<String,Object> deleteLilist(String[] dNums) throws SQLException;
 }

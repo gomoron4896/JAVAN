@@ -35,20 +35,25 @@ public class LevelServlet extends HttpServlet {
 				req.setAttribute("liList", liList);
 				uri = "/views/level/levelList";
 
-			} else if(cmd.equals("saveLevelList")) {
+			} else if (cmd.equals("saveLevelList")) {
 				List<LevelInfo> iList = new ArrayList<LevelInfo>();
 				String[] liNames = req.getParameterValues("liName");
 				String[] liLevels = req.getParameterValues("liLevel");
 				String[] liDesces = req.getParameterValues("liDesc");
-				for (int i = 0; i<liNames.length;i++) {
+				for (int i = 0; i < liNames.length; i++) {
 					int level = Integer.parseInt(liLevels[i]);
-					LevelInfo li = new LevelInfo(0,level,liNames[i],liDesces[i]);
+					LevelInfo li = new LevelInfo(0, level, liNames[i], liDesces[i]);
 					iList.add(li);
 				}
-				Map<String,List<LevelInfo>> map = new HashMap<String,List<LevelInfo>>();
+				Map<String, List<LevelInfo>> map = new HashMap<String, List<LevelInfo>>();
 				map.put("iList", iList);
 				map.put("uList", new ArrayList<LevelInfo>());
-				Map<String,Object> rMap = ls.insertNUpdateLilist(map);
+				Map<String, Object> rMap = ls.insertNUpdateLilist(map);
+				req.setAttribute("rMap", rMap);
+				uri = "/views/level/levelList";
+			} else if (cmd.equals("deleteLevelList")) {
+				String[] dNums = req.getParameterValues("liNum");
+				Map<String, Object> rMap = ls.deleteLilist(dNums);
 				req.setAttribute("rMap", rMap);
 				uri = "/views/level/levelList";
 			} else {

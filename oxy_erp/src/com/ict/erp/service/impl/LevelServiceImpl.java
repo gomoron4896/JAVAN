@@ -42,9 +42,23 @@ public class LevelServiceImpl implements LevelService {
 	}
 
 	@Override
-	public Map<String, Object> deleteLilist(List<LevelInfo> liList) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> deleteLilist(String[] dNums) throws SQLException {
+		Map<String,Object> rMap = new HashMap<String,Object>();
+		ldao.setConnection(DBCon.getCon());
+		int cnt = 0;
+		try {
+			cnt += ldao.deleteLiList(dNums);
+			DBCon.commit();
+			rMap.put("cnt", cnt);
+			rMap.put("msg", "정상 처리");
+		} catch(SQLException e) {
+			rMap.put("cnt", 0);
+			rMap.put("msg", "처리 에러");
+			throw e;
+		} finally {
+			DBCon.closeCon();
+		}
+		return rMap;
 	}
 	
 //	public static void main(String[] args) {

@@ -10,6 +10,6 @@ public interface LevelDAO {
 	public void setConnection(Connection con);
 	public List<LevelInfo> SelectLiList(LevelInfo li) throws SQLException;
 	public int insertLiList(List<LevelInfo> liList) throws SQLException;
-	public int deleteLiList(int[] liNums) throws SQLException;
+	public int deleteLiList(String[] liNums) throws SQLException;
 	public int updateLiList(List<LevelInfo> liList) throws SQLException;
 }

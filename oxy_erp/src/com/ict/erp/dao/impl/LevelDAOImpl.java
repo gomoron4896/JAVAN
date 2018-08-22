@@ -60,9 +60,15 @@ public class LevelDAOImpl implements LevelDAO {
 	}
 
 	@Override
-	public int deleteLiList(int[] liNums) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	public int deleteLiList(String[] dNums) throws SQLException {
+		String sql = "delete from level_info where liNum=?";
+		PreparedStatement ps = this.con.prepareStatement(sql);
+		int cnt = 0;
+		for(String dNum : dNums) {
+		ps.setString(1, dNum);
+		cnt += ps.executeUpdate();
+		}
+		return cnt;
 	}
 
 	@Override
