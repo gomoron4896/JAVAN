@@ -89,5 +89,4 @@ public class LevelServlet extends HttpServlet {
 			throws ServletException, IOException {
 		doGet(request, response);
 	}
-
 }
