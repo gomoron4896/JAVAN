@@ -3,9 +3,21 @@
 <%@include file="/WEB-INF/views/common/common.jsp"%>
 <body>
 	<div id="wrapper">
-		<jsp:include page="/WEB-INF/views/level/left.jsp"></jsp:include>
+	<jsp:include page="/WEB-INF/views/level/left.jsp"></jsp:include>
+	<div class="page-content-wrapper">
+		<div style="margin:10px">
 		<a href="#menu-toggle" class="btn btn-secondary" id="menu-toggle">Toggle Menu</a>
-		<div class="container">
+		</div>
+		<div style="margin:5px;" class="searchbox">
+				<select id="shType">
+					<option value="liNum">번호</option>
+					<option value="liLevel">레벨</option>
+					<option value="liName">이름</option>
+					<option value="liDesc">비고</option>
+				</select>
+				<input type="text" id="shText">
+				<button onclick="searchTest()">검색</button>
+			</div>
 			<table id="levelList" class="table table-bordered table-hover">
 				<thead>
 					<tr>
@@ -37,20 +49,11 @@
 				<button id="add" onclick="addRow()">레벨추가</button>
 				<button id="add" onclick="saveLevel()">레벨저장</button>
 				<button id="add" onclick="deleteLevel()">레벨삭제</button>
-			</div>
-			<div class="searchbox">
-				<select id="shType">
-					<option value="liNum">번호</option>
-					<option value="liLevel">레벨</option>
-					<option value="liName">이름</option>
-					<option value="liDesc">비고</option>
-				</select>
-				<input type="text" id="shText">
-				<button onclick="searchTest()">검색</button>
-			</div>
 		</div>
 	</div>
+	</div>
 	<script>
+	
 		$("#menu-toggle").click(function(e) {
 			e.preventDefault();
 			$("#wrapper").toggleClass("toggled");
@@ -76,7 +79,7 @@
 		var emptyList = '${empty liList}';
 		function addRow() {
 			var html = '<tr>';
-			html += '<td>&nbsp</td>';
+			html += '<td colspan="2">&nbsp</td>';
 			html += '<td><input type="text" name="liLevel"></td>';
 			html += '<td><input type="text" name="liName"></td>';
 			html += '<td><input type="text" name="liDesc"></td>';
