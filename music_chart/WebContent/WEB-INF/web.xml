@@ -5,11 +5,22 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>music_chart</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
 		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	<servlet>
+		<servlet-name>ViewsServlet</servlet-name>
+		<servlet-class>com.ict.music.controller.ViewsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ViewsServlet</servlet-name>
+		<url-pattern>/views/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>FavServlet</servlet-name>
+		<servlet-class>com.ict.music.controller.FavServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FavServlet</servlet-name>
+		<url-pattern>/fav/*</url-pattern>
+	</servlet-mapping>
 </web-app>

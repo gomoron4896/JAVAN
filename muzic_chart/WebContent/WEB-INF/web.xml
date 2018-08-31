@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>music_chart</display-name>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>ViewsServlet</servlet-name>
+    <servlet-class>com.ict.music.controller.ViewsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewsServlet</servlet-name>
+    <url-pattern>/views/*</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>FavServlet</servlet-name>
+    <servlet-class>com.ict.music.controller.FavServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FavServlet</servlet-name>
+    <url-pattern>/fav/*</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>com.ict.music.filter.AuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+</web-app>

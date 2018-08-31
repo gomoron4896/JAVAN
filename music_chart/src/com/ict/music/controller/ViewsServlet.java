@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.ict.music.common.OwnUtils;
 
-@WebServlet("/ViewsServlet")
 public class ViewsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String uri; 
