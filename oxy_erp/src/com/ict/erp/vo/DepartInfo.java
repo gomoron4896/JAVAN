@@ -5,6 +5,7 @@ public class DepartInfo {
 	private String diCode;
 	private String diName;
 	private String diDesc;
+	private PageInfo pi;
 
 	public DepartInfo() {
 
@@ -16,6 +17,14 @@ public class DepartInfo {
 		this.diCode = diCode;
 		this.diName = diName;
 		this.diDesc = diDesc;
+	}
+
+	public PageInfo getPi() {
+		return pi;
+	}
+
+	public void setPi(PageInfo pi) {
+		this.pi = pi;
 	}
 
 	public int getDiNum() {

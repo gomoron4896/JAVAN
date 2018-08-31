@@ -28,6 +28,7 @@
 		</c:if>
 	</tbody>
 </table>
+<button href="/depart/departInsert">입력</button>
 <script type="text/javascript">
 
 </script>
