@@ -1,6 +1,7 @@
 package com.ict.erp.service.impl;
 
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -18,7 +19,7 @@ public class TicketMovieServiceImpl implements TicketMovieService {
 		try {
 			tmdao.setConnection(DBCon.getCon());
 			return tmdao.selectTmList();
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			throw e;
 		} finally {
 			DBCon.close();
@@ -33,8 +34,21 @@ public class TicketMovieServiceImpl implements TicketMovieService {
 
 	@Override
 	public Map<String, Object> instTm(TicketMovie tm) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			tmdao.setConnection(DBCon.getCon());
+			Map<String, Object> rMap = new HashMap<String, Object>();
+			rMap.put("cnt", tmdao.insertTm(tm));
+			if ((Integer) rMap.get("cnt") == 1) {
+				rMap.put("msg", "입력 성공");
+			} else {
+				rMap.put("msg", "입력 실패");
+			}
+			return rMap;
+		} catch (SQLException e) {
+			throw e;
+		} finally {
+			DBCon.close();
+		}
 	}
 
 	@Override

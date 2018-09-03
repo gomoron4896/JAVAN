@@ -6,14 +6,13 @@
 <script>
 	alert('${rMap.msg}');
 	if(${rMap.cnt}==1){
-		location.href="/member/memberList";
+		location.href="/ticketMovie/ticketMovieList";
 	}
 </script>
 </c:if>
 <div id="wrapper">
 <jsp:include page="/WEB-INF/views/menu/left.jsp" />
 	<div id="page-content-wrapper">
-	<img src="\upload\1535704125910.jpg">
 		<form action="/ticketMovie/ticketMovieInsert" method="post" enctype="multipart/form-data">
 		<table class="table table-bordered">
 			<tr>

@@ -52,20 +52,20 @@ public class TicketMovie {
 		this.tmPrice = tmPrice;
 	}
 
-	public String getTmStartDat() {
+	public String getTmStartdat() {
 		return tmStartdat;
 	}
 
-	public void setTmStartDat(String tmStartDat) {
-		this.tmStartdat = tmStartDat;
+	public void setTmStartdat(String tmStartdat) {
+		this.tmStartdat = tmStartdat;
 	}
 
-	public String getTmEndDat() {
+	public String getTmEnddat() {
 		return tmEnddat;
 	}
 
-	public void setTmEndDat(String tmEndDat) {
-		this.tmEnddat = tmEndDat;
+	public void setTmEnddat(String tmEnddat) {
+		this.tmEnddat = tmEnddat;
 	}
 
 	public String getTmCredat() {

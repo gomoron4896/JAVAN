@@ -32,16 +32,19 @@
 				<td>${tm.tmNum}</td>
 				<td>${tm.tmName}</td>
 				<td>${tm.tmPrice}</td>
-				<td>${tm.StartDat}</td>
-				<td>${tm.EndDat}</td>
-				<td>${tm.Credat}</td>
+				<td>${tm.tmStartdat}</td>
+				<td>${tm.tmEnddat}</td>
+				<td>${tm.tmCredat}</td>
 				<td>${tm.tmDesc}</td>
 				<td>${tm.tmCnt}</td>
-				<td>${tm.tmImg}</td>
+				<td><img src="${tm.tmImg}" height="42" width="42"></td>
 			</tr>
 		</c:forEach>
 	</tbody>
-	</table>
+	</table><br>
+	<button class="button" data-page="/views/ticketMovie/ticketMovieInsert">새 예매</button>
+	<button class="button">예매 수정</button>
+	<button class="button">예매 취소</button>
 	</div>
 </div>
 <jsp:include page="/WEB-INF/views/menu/bottom.jsp" />

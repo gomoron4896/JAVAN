@@ -35,7 +35,7 @@ public class TicketMovieServlet extends HttpServlet {
 	private static final int UP_FILE_SIZE = 1024*1024*20;//20MB
 	
 	private static final File TEMP_REPOSITORY = new File(System.getProperty("java.io.tmpdir"));
-	private static final String UP_PATH = "C:\\jsp_study\\workspace\\git\\ict_erp\\ict_erp\\WebContent";
+	private static final String UP_PATH = "E:\\java_study\\workspace\\git\\java\\JAVAN\\ict-erp-dpl\\WebContent";
 	
 	private TicketMovieService tms = new TicketMovieServiceImpl();
 	
@@ -88,7 +88,7 @@ public class TicketMovieServlet extends HttpServlet {
 					}
 				}
 				TicketMovie tm = IBean.parseRequest(params, TicketMovie.class);
-				
+				req.setAttribute("rMap", tms.instTm(tm));
 			}
 		}catch(Exception e) {
 			throw new ServletException(e);
