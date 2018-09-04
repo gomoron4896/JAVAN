@@ -35,7 +35,7 @@ public class TicketMovieServlet extends HttpServlet {
 	private static final int UP_FILE_SIZE = 1024*1024*20;//20MB
 	
 	private static final File TEMP_REPOSITORY = new File(System.getProperty("java.io.tmpdir"));
-	private static final String UP_PATH = "E:\\java_study\\workspace\\git\\java\\JAVAN\\ict-erp-dpl\\WebContent";
+	private static final String UP_PATH = "C:\\jsp_study\\workspace\\git\\JAVAN\\ict-erp-dpl\\WebContent";
 	
 	private TicketMovieService tms = new TicketMovieServiceImpl();
 	
@@ -80,11 +80,11 @@ public class TicketMovieServlet extends HttpServlet {
 					}else {
 						File f= new File(fi.getName());
 						String fName = File.separator + "upload" + File.separator + System.currentTimeMillis() + fi.getName().substring(fi.getName().lastIndexOf("."));
-								
 						String fPath = UP_PATH + fName;
 						File sFile = new File(fPath);
 						fi.write(sFile);
 						params.put(fi.getFieldName(), fName);
+						System.out.println(params);
 					}
 				}
 				TicketMovie tm = IBean.parseRequest(params, TicketMovie.class);

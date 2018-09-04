@@ -64,6 +64,14 @@
     <servlet-name>TicketMovieServlet</servlet-name>
     <url-pattern>/ticketMovie/*</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>JsonServlet</servlet-name>
+    <servlet-class>com.ict.erp.controller.JsonServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JsonServlet</servlet-name>
+    <url-pattern>/json/*</url-pattern>
+  </servlet-mapping>
   <error-page>
     <error-code>404</error-code>
     <location>/WEB-INF/views/error/404.jsp</location>

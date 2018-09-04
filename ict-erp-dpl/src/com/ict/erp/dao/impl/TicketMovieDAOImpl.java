@@ -36,16 +36,17 @@ public class TicketMovieDAOImpl extends CommonDAOImpl implements TicketMovieDAO 
 	public int insertTm(TicketMovie tm) throws SQLException {
 		try {
 			String sql = "insert into ticket_movie(tmNum, tmName, tmPrice, tmStartDat, tmEndDat, tmCredat, tmDesc, tmCnt, tmImg)";
-			sql += "values(seq_tmNum.nextval,?,?,?,?,to_char(SYSDATE,'YYYYMMDD'),?,?,?)";
+			sql += "values(seq_tmNum.nextval,?,?,?,?,to_char(SYSDATE,'YYYYMMDD'),?,0,?)";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, tm.getTmName());
 			ps.setInt(2, tm.getTmPrice());
 			ps.setString(3, tm.getTmStartdat().replaceAll("-", ""));
 			ps.setString(4, tm.getTmEnddat().replaceAll("-", ""));
 			ps.setString(5, tm.getTmDesc());
-			ps.setInt(6, tm.getTmCnt());
-			ps.setString(7, tm.getTmImg());
-			return ps.executeUpdate();
+			ps.setString(6, tm.getTmImg());
+			int cnt = ps.executeUpdate();
+			con.commit();
+			return cnt;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

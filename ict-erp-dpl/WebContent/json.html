@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>코드</th>
+				<th>이름</th>
+				<th>설명</th>	
+			</tr>
+		</thead>
+		<tbody id="tBody">
+		</tbody>
+	</table>
+	<button type="button" id="btn">제이슨테스트</button>
+	<script>
+		document.querySelector('#btn').onclick = function() {
+			var req = new XMLHttpRequest();
+			req.onreadystatechange = function() {
+				if (req.readyState == req.DONE) {
+					if (req.status == 200) {
+						var obj = JSON.parse(req.responseText);
+						var html = '';
+						for(var i=0; i<obj.length;i++) {
+							html += '<tr>';
+							html += '<td>' + obj[i].tmNum + '</td>';
+							html += '<td>' + obj[i].tmCnt + '</td>';
+							html += '<td>' + obj[i].tmName + '</td>';
+							html += '<td><img src="' + obj[i].tmImg + '" width="50" height="50"></td>';
+							html += '<tr>';
+						}
+						document.querySelector('#tBody').innerHTML = html;
+					} else {
+
+					}
+				}
+			}
+			var param = {
+				name : '김기섭',
+				age : '25',
+				address : 'seoul'
+			};
+			param = encodeURIComponent(JSON.stringify(param));
+			req.open('POST', '/json/list');
+			req.send();
+		}
+	</script>
+</body>
+</html>
