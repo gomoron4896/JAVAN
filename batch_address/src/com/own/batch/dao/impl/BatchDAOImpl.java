@@ -10,11 +10,13 @@ import batch_address.DBCon;
 public class BatchDAOImpl {
 
 	public int insert(List<List<String>> list) {
+		Long stime = System.currentTimeMillis();
+		
 		Connection con = DBCon.getCon();
 		
 		int cnt = 0;
 		String sql = "insert into addr_list";
-		sql += " values(" + "seq_alNum.nextval,?,?,?,?,?,?,?,?,?,?,?,?)";
+		sql += " values(seq_alNum.nextval,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
@@ -30,8 +32,9 @@ public class BatchDAOImpl {
 			}
 			cnt = ps.executeBatch().length;
 			DBCon.close();
+			Long eTime = System.currentTimeMillis();
+			System.out.println("걸린 시간 - " + (eTime - stime));
 			return cnt; 
-					
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			try {
@@ -40,6 +43,9 @@ public class BatchDAOImpl {
 			} finally {
 				DBCon.close();
 			}
+			Long eTime = System.currentTimeMillis();
+			System.out.println("걸린 시간 - " + (eTime - stime));
+			
 			return cnt;
 		}
 	}

@@ -14,7 +14,7 @@ import com.own.batch.dao.impl.BatchDAOImpl;
 public class BatchTest {
 
 	public static void main(String[] args) throws IOException {
-		String path = "C:\\jsp_study\\zipcode_DB";
+		String path = "E:\\java_study\\zipcode_DB";
 		File f = new File(path);
 		System.out.println("폴더 유무 : " + f.isDirectory());
 		System.out.println("폴더 유무 : " + f.exists());
@@ -33,16 +33,16 @@ public class BatchTest {
 					List<String> strList = new ArrayList<String>();
 					for (int i = 0, max = 13; i <= max; i++) {
 						strList.add(strs[i]);
-						System.out.println("파일 명" + ff.getName());
 					}
 					list.add(strList);
 				}
 				br.close();
 				fr.close();
 				BatchDAOImpl bdao = new BatchDAOImpl();
+				System.out.println("파일명 - " + ff.getName());
 				int rCnt = bdao.insert(list);
-				System.out.println("파일 명" + ff.getName());
-				System.out.println("적용 개수" + rCnt);
+				System.out.println("적용 개수 - " + rCnt);
+				System.out.println("");
 			}
 		}
 	}
