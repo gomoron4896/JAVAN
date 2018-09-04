@@ -9,10 +9,10 @@ public class NewBatch {
 	public static void main(String[] args) {
 		
 		File f = new File(FILE_LOCATION);
+		
 		System.out.println(f.isDirectory());
+		
 		System.out.println(f.exists());
 		
-		
 	}
-
 }
