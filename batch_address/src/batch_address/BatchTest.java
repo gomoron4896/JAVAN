@@ -1,6 +1,7 @@
 package batch_address;
 
 import java.io.BufferedReader;
+import java.io.Console;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
@@ -9,12 +10,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogConfigurationException;
+import org.apache.commons.logging.LogFactory;
+
 import com.own.batch.dao.impl.BatchDAOImpl;
 
 public class BatchTest {
-
+	
+	private Log log = LogFactory.getLog(this.getClass());
+	
 	public static void main(String[] args) throws IOException {
-		String path = "E:\\java_study\\zipcode_DB";
+		String path = "C:\\jsp_study\\zipcode_DB";
 		File f = new File(path);
 		System.out.println("폴더 유무 : " + f.isDirectory());
 		System.out.println("폴더 유무 : " + f.exists());
