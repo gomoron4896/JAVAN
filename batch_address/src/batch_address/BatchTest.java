@@ -28,7 +28,7 @@ public class BatchTest {
 		File[] fList = f.listFiles();
 		List<List<String>> list = new ArrayList<List<String>>();
 		for (File ff : fList) {
-			if (ff.getName().endsWith(".txt")) {
+			if (ff.getName().endsWith("경기도.txt")) {
 				list = new ArrayList<List<String>>();
 				FileInputStream fis = new FileInputStream(ff);
 				InputStreamReader fr = new InputStreamReader(fis, "EUC-KR");
