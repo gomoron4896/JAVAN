@@ -31,10 +31,11 @@ public class BatchDAOImpl {
 				ps.addBatch();
 				addCnt++;
 				ps.clearParameters();
-				if (addCnt + 1 % 100 == 1 || list.size() / addCnt == 1) {
+				if (addCnt + 1 % 10000 == 1 || list.size() / addCnt == 1) {
 					cnt += ps.executeBatch().length;
 				}
 			}
+//			cnt += ps.executeBatch().length;
 			DBCon.close();
 			Long eTime = System.currentTimeMillis();
 			System.out.println("걸린 시간 - " + (eTime - stime));

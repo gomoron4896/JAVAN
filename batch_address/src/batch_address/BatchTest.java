@@ -17,9 +17,9 @@ import org.apache.commons.logging.LogFactory;
 import com.own.batch.dao.impl.BatchDAOImpl;
 
 public class BatchTest {
-	
+
 	private Log log = LogFactory.getLog(this.getClass());
-	
+
 	public static void main(String[] args) throws IOException {
 		String path = "C:\\jsp_study\\zipcode_DB";
 		File f = new File(path);
@@ -51,6 +51,7 @@ public class BatchTest {
 				System.out.println("적용 개수 - " + rCnt);
 				System.out.println("");
 			}
+
 		}
 	}
 }
